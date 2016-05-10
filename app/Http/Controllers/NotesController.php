@@ -11,27 +11,46 @@ use App\Card;
 
 class NotesController extends Controller
 {
+    /**
+    * Store a new note
+    *
+    * @return
+    * @param addNote $note and $userId stated in Card Model
+    */
     public function store(Request $request, Card $card)
     {	
-    		Note::create([
-    			'body' => $request->input('body'),
-    			'card_id' => $card->id,
-    			'user_id' => 1,
-    		]);
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
         
-    	return back();
+        $note = new Note($request->all());
+
+        $card->addNote($note, 1);
+
+        return back();
     }
 
-   public function edit(Note $note)
-   {
-   		return view('notes.edit')->with('note', $note);
-   }
+      /**
+      * Route to a notes edit page
+      *
+      * @return view notes.edit
+      */
+    public function edit(Note $note)
+    {
+  	     return view('notes.edit')->with('note', $note);
+    }
 
-   public function update(Request $request, Note $note)
-   {
-   		$note->update($request->all());
-   		
-   		return view('card.card');
-   }
+      /**
+      * Update the note
+      *
+      * @var note
+      * @return view card
+      */
+      public function update(Request $request, Note $note)
+      {
+            $note->update($request->all());
+
+            return view('card.card');
+      }
 
 }

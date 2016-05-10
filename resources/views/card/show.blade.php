@@ -18,14 +18,20 @@
 	
 	<form action="/cards/{{ $card->id }}/notes" method="POST">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<div class="form-group">
+		<div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
 			<label for="note">Note</label>
 			<div>
-				<textarea class="form-control" name="body" id="note"></textarea>
+				<textarea class="form-control" name="body" id="note">{{ old('body') }}</textarea>
+				@if ($errors->has('body'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('body') }}</strong>
+                    </span>
+                @endif
 			</div>
 
 			<button type="submit" class="btn btn-success">Add Note</button>
 		</div>
 	</form>
+
 </div>
 @stop
