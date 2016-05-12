@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-use App\Http\Requests;
+// use App\Http\Requests;
+
+use App\Http\Requests\CardRequest;
 
 use App\Note;
 use App\Card;
@@ -17,12 +19,8 @@ class NotesController extends Controller
     * @return
     * @param addNote $note and $userId stated in Card Model
     */
-    public function store(Request $request, Card $card)
+    public function store(CardRequest $request, Card $card)
     {	
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
-        
         $note = new Note($request->all());
 
         $card->addNote($note, 1);
