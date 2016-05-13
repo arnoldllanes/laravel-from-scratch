@@ -1,5 +1,31 @@
 <?php
 
+class Mailer 
+{
+
+}
+
+class RegistersUsers
+{
+	protected $mailer;
+	//Dependency Injection
+	public function __construct(Mailer $mailer) 
+	{
+		$this->mailer = $mailer;
+	}
+
+	//Method injection
+	public function setMailer(Mailer $mailer)
+	{
+		$this->mailer = $mailer;
+	}
+}
+
+
+// App::bind('RegistersUsers', function(){
+// 	return new RegistersUsers(new Mailer);
+// });
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,9 +43,8 @@ Route::get('begin', function() {
 });
 
 
-Route::get('/', function () {
-	
-    return view('welcome');
+Route::get('/', function (RegistersUsers $registration) {
+    var_dump($registration);
 });
 
 Route::get('cards', 'CardsController@index');
