@@ -20,6 +20,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => 'factory:App\User',
+        'title' => $faker->sentence,
+        'body' => $faker->paragraph
+    ] ;
+});
 
 $factory->define(App\Card::class, function (Faker\Generator $faker) {
 	return [

@@ -155,7 +155,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FooServiceProvider::class
+        App\Providers\FooServiceProvider::class,
+        Laracasts\Generators\GeneratorsServiceProvider::class
 
     ],
 
