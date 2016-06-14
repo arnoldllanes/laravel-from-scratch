@@ -58,7 +58,7 @@ Route::patch('notes/{note}', 'NotesController@update');
 Route::get('/scratch', 'OopController@index');
 
 Route::get('/eloquent-series', 'EloquentSeries@index');
-
+Route::resource('subscriptions', 'SubscriptionsController');
 
 
 

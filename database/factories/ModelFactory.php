@@ -25,13 +25,19 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'user_id' => 'factory:App\User',
         'title' => $faker->sentence,
         'body' => $faker->paragraph
-    ] ;
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'post_id' => 'factory:App\Post',
+        'body' => $faker->paragraph
+    ];
 });
 
 $factory->define(App\Card::class, function (Faker\Generator $faker) {
 	return [
 	    'title' => $faker->sentence,
-	  
 	];
 });
 
